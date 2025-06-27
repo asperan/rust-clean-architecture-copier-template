@@ -1,0 +1,25 @@
+_exclude:
+  - copier.yml
+  - .git
+  - .gitignore
+  - LICENSE
+  - README.md
+
+project_name:
+  type: str
+  help: "What is the project name?"
+  validator: >-
+    {% if not (project_name | regex_search('^(?!.*--)[a-z][a-z0-9]*(?:-[a-z0-9]+)*$')) %}
+    Project name must start with a lowercase ASCII letter, optionally followed by any number of lowercase ASCII letters, numbers and non-consecutive hypens.
+    {% endif %}
+
+rust_edition:
+  type: str
+  help: "What Rust edition do you want to use?"
+  choices:
+    - "2015"
+    - "2018"
+    - "2021"
+    - "2024"
+  default: "2021"
+
