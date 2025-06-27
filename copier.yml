@@ -6,7 +6,10 @@ _exclude:
   - README.md
 
 _tasks:
-  - command: "git init && git add . && git commit -m \"chore: initialize project\""
+  - command: >-
+      if ! [ -d ".git" ]; then
+        git init && git add . && git commit -m "chore: initialize project"
+      fi
     when: "{{ _copier_operation == 'copy' }}"
 
 project_name:
